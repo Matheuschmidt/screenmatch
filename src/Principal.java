@@ -1,4 +1,6 @@
 import br.com.alura.screenmatch.modelos.Filme;
+import br.com.alura.screenmatch.modelos.Serie;
+import br.com.alura.screenmatch.modelos.br.com.aluras.screenmatch.calculos.CalculadoraDeTempo;
 
 public class Principal {
     public static void main(String[] args) {
@@ -12,8 +14,27 @@ public class Principal {
         meuFilme.avalia(5);
         meuFilme.avalia(10);
 
-
         System.out.println("Total de avaliações: "+meuFilme.getTotalDeAvaliacoes());
         System.out.println(meuFilme.pegaMedia());
+
+        Serie arcane = new Serie();
+        arcane.setNome("Arcane");
+        arcane.setAnoDeLancamento(2024);
+        arcane.exibeFichaTecnica();
+        arcane.setTemporadas(2);
+        arcane.setEspisodiosPorTemporada(10);
+        arcane.setMinutosPorEpisodio(25);
+        System.out.println("Duração para maratonar Arcane: " + arcane.getDuracaoEmMinutos());
+
+        Filme outroFilme = new Filme();
+        outroFilme.setNome("Avatar");
+        outroFilme.setAnoDeLancamento(2023);
+        outroFilme.setDuracaoEmMinutos(200);
+
+        CalculadoraDeTempo calculadora = new CalculadoraDeTempo();
+        calculadora.inclui(meuFilme);
+        calculadora.inclui(outroFilme);
+        calculadora.inclui(arcane);
+        System.out.println(calculadora.getTempoTotal());
     }
 }
