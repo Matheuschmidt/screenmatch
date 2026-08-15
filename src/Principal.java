@@ -4,6 +4,8 @@ import br.com.alura.screenmatch.modelos.Episodio;
 import br.com.alura.screenmatch.modelos.Filme;
 import br.com.alura.screenmatch.modelos.Serie;
 
+import java.util.ArrayList;
+
 
 public class Principal {
     public static void main(String[] args) {
@@ -47,7 +49,13 @@ public class Principal {
         episodioArcane.setNumero(1);
         episodioArcane.setSerie(arcane);
         episodioArcane.setTotalVizualizacoes(200);
-
         filtroRecomendacao.filtra(episodioArcane);
+
+        ArrayList<Filme> listaDeFilmes = new ArrayList<>();
+        listaDeFilmes.add(meuFilme);
+        listaDeFilmes.add(outroFilme);
+        System.out.println("Tamanho da lista: "+listaDeFilmes.size());
+        System.out.println("Primeiro filme:  "+listaDeFilmes.get(0).getNome());
+        System.out.println(listaDeFilmes);
     }
 }
