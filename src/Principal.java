@@ -3,15 +3,14 @@ import br.com.alura.screenmatch.calculos.FiltroRecomendacao;
 import br.com.alura.screenmatch.modelos.Episodio;
 import br.com.alura.screenmatch.modelos.Filme;
 import br.com.alura.screenmatch.modelos.Serie;
+import br.com.alura.screenmatch.modelos.Titulo;
 
 import java.util.ArrayList;
 
 
 public class Principal {
     public static void main(String[] args) {
-        Filme meuFilme = new Filme();
-        meuFilme.setNome("Poderoso Chefão");
-        meuFilme.setAnoDeLancamento(1970);
+        Filme meuFilme = new Filme("Poderoso Chefão", 1970);
         meuFilme.setDuracaoEmMinutos(180);
 
         meuFilme.exibeFichaTecnica();
@@ -22,24 +21,20 @@ public class Principal {
         System.out.println("Total de avaliações: "+meuFilme.getTotalDeAvaliacoes());
         System.out.println(meuFilme.pegaMedia());
 
-        Serie arcane = new Serie();
-        arcane.setNome("Arcane");
-        arcane.setAnoDeLancamento(2024);
-        arcane.exibeFichaTecnica();
-        arcane.setTemporadas(2);
-        arcane.setEspisodiosPorTemporada(10);
-        arcane.setMinutosPorEpisodio(25);
-        System.out.println("Duração para maratonar Arcane: " + arcane.getDuracaoEmMinutos());
+        Serie serie = new Serie("Arcane", 2024);
+        serie.exibeFichaTecnica();
+        serie.setTemporadas(2);
+        serie.setEspisodiosPorTemporada(10);
+        serie.setMinutosPorEpisodio(25);
+        System.out.println("Duração para maratonar Arcane: " + serie.getDuracaoEmMinutos());
 
-        Filme outroFilme = new Filme();
-        outroFilme.setNome("Avatar");
-        outroFilme.setAnoDeLancamento(2023);
+        Filme outroFilme = new Filme("Avatar",2023);
         outroFilme.setDuracaoEmMinutos(200);
 
         CalculadoraDeTempo calculadora = new CalculadoraDeTempo();
         calculadora.inclui(meuFilme);
         calculadora.inclui(outroFilme);
-        calculadora.inclui(arcane);
+        calculadora.inclui(serie);
         System.out.println(calculadora.getTempoTotal());
 
         FiltroRecomendacao filtroRecomendacao = new FiltroRecomendacao();
@@ -47,15 +42,21 @@ public class Principal {
 
         Episodio episodioArcane = new Episodio();
         episodioArcane.setNumero(1);
-        episodioArcane.setSerie(arcane);
+        episodioArcane.setSerie(serie);
         episodioArcane.setTotalVizualizacoes(200);
         filtroRecomendacao.filtra(episodioArcane);
 
-        ArrayList<Filme> listaDeFilmes = new ArrayList<>();
-        listaDeFilmes.add(meuFilme);
-        listaDeFilmes.add(outroFilme);
-        System.out.println("Tamanho da lista: "+listaDeFilmes.size());
-        System.out.println("Primeiro filme:  "+listaDeFilmes.get(0).getNome());
-        System.out.println(listaDeFilmes);
+        ArrayList<Titulo> lista = new ArrayList<>();
+        lista.add(meuFilme);
+        lista.add(outroFilme);
+        lista.add(serie);
+        for (Titulo titulo : lista) {
+            System.out.println(titulo);
+            if (titulo instanceof Filme filme && filme.getClassificacao() > 2){
+                System.out.println("Classificacao: " + filme.getClassificacao());
+            }
+
+        }
+
     }
 }
