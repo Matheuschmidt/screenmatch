@@ -5,7 +5,7 @@ import br.com.alura.screenmatch.modelos.Filme;
 import br.com.alura.screenmatch.modelos.Serie;
 import br.com.alura.screenmatch.modelos.Titulo;
 
-import java.util.ArrayList;
+import java.util.*;
 
 
 public class Principal {
@@ -46,17 +46,21 @@ public class Principal {
         episodioArcane.setTotalVizualizacoes(200);
         filtroRecomendacao.filtra(episodioArcane);
 
-        ArrayList<Titulo> lista = new ArrayList<>();
+        List<Titulo> lista = new LinkedList<>();
         lista.add(meuFilme);
-        lista.add(outroFilme);
+        lista.add(outroFilme); 
         lista.add(serie);
+
+        lista.sort(Comparator.comparing(Titulo::getAnoDeLancamento));
+        //Collections.sort(lista);
+
         for (Titulo titulo : lista) {
             System.out.println(titulo);
             if (titulo instanceof Filme filme && filme.getClassificacao() > 2){
                 System.out.println("Classificacao: " + filme.getClassificacao());
             }
-
         }
+
 
     }
 }
