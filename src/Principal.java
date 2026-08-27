@@ -48,7 +48,7 @@ public class Principal {
 
         List<Titulo> lista = new LinkedList<>();
         lista.add(meuFilme);
-        lista.add(outroFilme); 
+        lista.add(outroFilme);
         lista.add(serie);
 
         lista.sort(Comparator.comparing(Titulo::getAnoDeLancamento));
